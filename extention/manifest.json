@@ -1,18 +1,13 @@
 {
   "name": "web-voice-recognizer",
-  "short_name": "wvr",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "manifest_version": 2,
-  "description": "web voice recognition sample",
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*/*"
-      ],
-      "js": [
-        "script.js"
-      ]
+  "description": "web voice recognition sample extention",
+  "page_action": {
+    "default_popup": "dist/index.html",
+    "default_icon": {
+      "128": "images/speech-icon128.png"
     }
-  ],
+  },
   "homepage_url": "https://github.com/komura-c/web-voice-recognizer"
 }

@@ -1,4 +1,3 @@
-
 import { actionByResult } from './action';
 
 (function () {
@@ -40,7 +39,7 @@ import { actionByResult } from './action';
         const resultText = event.results[0][0].transcript;
         contentDiv.innerHTML = resultText;
 
-        eventHandlerByRecognizerResult(resultText);
+        actionByResult(resultText);
       }
     }
     recognizer.onend = function () {
