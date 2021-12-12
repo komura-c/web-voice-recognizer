@@ -56,7 +56,7 @@ function voiceRecognition() {
 
   const statusDiv = document.getElementById('js-status');
   recognizer.onsoundstart = function () {
-    statusDiv.innerHTML = "認識中...";
+    statusDiv.innerHTML = "認識中";
   };
   recognizer.onnomatch = function () {
     startRecognizer();

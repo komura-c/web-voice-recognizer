@@ -4,7 +4,6 @@
   "manifest_version": 2,
   "description": "web voice recognition sample extention",
   "permissions": [
-    "tabs",
     "webNavigation",
     "*://*/*"
   ],
@@ -23,13 +22,6 @@
       ]
     }
   ],
-  "browser_action": {
-    "default_title": "web-voice-recognizer",
-    "default_popup": "popup.html",
-    "default_icon": {
-      "32": "images/speech-icon32.png"
-    }
-  },
   "icons": {
     "48": "images/speech-icon48.png",
     "128": "images/speech-icon128.png"
