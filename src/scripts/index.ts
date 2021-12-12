@@ -40,14 +40,9 @@ function voiceRecognition() {
 
   // show result
   const resultDiv = document.getElementById('js-result');
-  let prevResultText: string;
   recognizer.onresult = function (event) {
     const results = event.results;
     const resultText = results[results.length - 1][0].transcript.trim();
-    if (prevResultText === resultText) {
-      return;
-    }
-    prevResultText = resultText;
     console.log(resultText);
     resultDiv.innerHTML = resultText;
     actionByResult(resultText);
