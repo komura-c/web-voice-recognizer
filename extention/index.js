@@ -54,14 +54,16 @@ function voiceRecognition() {
 }
 
 function actionByResult(resultText) {
-  switch (resultText) {
-    case '上':
-      return scrollUp();
-    case '下':
-      return scrollDown();
-    default:
-      return;
+  if (isMatchWord(resultText, '上')) {
+    return scrollUp();
+  } else if (isMatchWord(resultText, '下')) {
+    return scrollDown();
   }
+
+  function isMatchWord(resultText, keyword) {
+    return resultText.indexOf(keyword) != -1
+  }
+
   function scrollUp() {
     window.scrollBy({
       top: -window.innerHeight,
