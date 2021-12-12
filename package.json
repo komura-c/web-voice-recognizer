@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Web voice recognition sample by Web Speech API",
   "scripts": {
-    "rmdst-start": "if [ -e dist ]; then rm -r dist; fi",
-    "rmdst-build": "if [ -e extention/dist ]; then rm -r extention/dist; fi",
-    "start": "npm run rmdst-start && parcel src/index.html --open --no-source-maps",
-    "build": "npm run rmdst-build && parcel build src/index.html --no-optimize --no-source-maps --dist-dir extention/dist",
+    "rmdst": "if [ -e dist ]; then rm -r dist; fi",
+    "start": "npm run rmdst && parcel src/index.html --open --no-source-maps",
+    "build": "npm run rmdst && parcel build src/index.html --public-url ./ --no-optimize --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
