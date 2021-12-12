@@ -63,13 +63,13 @@ function actionByResult(resultText) {
 
   function scrollUp() {
     window.scrollBy({
-      top: -window.innerHeight,
+      top: -window.innerHeight / 2,
       behavior: "smooth"
     });
   }
   function scrollDown() {
     window.scrollBy({
-      top: window.innerHeight,
+      top: window.innerHeight / 2,
       behavior: "smooth"
     });
   }
