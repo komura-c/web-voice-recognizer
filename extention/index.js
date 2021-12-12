@@ -1,4 +1,9 @@
-voiceRecognition();
+chrome.extension.onMessage.addListener(function (request) {
+  if (request == "action") {
+    voiceRecognition();
+  }
+});
+
 function voiceRecognition() {
   // @ts-ignore
   const Recognition = window.webkitSpeechRecognition || window.SpeechRecognition;
