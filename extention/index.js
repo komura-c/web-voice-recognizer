@@ -18,9 +18,16 @@ function voiceRecognition() {
     recognizer.start();
     isListening = true;
   }
+  function stopRecognizer() {
+    if (!isListening) return;
+    recognizer.stop();
+    isListening = false;
+  }
 
+  let errorFlg = false;
   recognizer.onsoundstart = function () {
     console.log("状態: 認識中");
+    errorFlg = false;
   };
   recognizer.onsoundend = function () {
     console.log("状態: 停止中");
@@ -32,6 +39,8 @@ function voiceRecognition() {
   recognizer.onerror = function (err) {
     console.log("状態: エラー");
     console.error(err);
+    stopRecognizer();
+    errorFlg = true;
   };
 
   let prevResultText;
@@ -42,11 +51,11 @@ function voiceRecognition() {
     prevResultText = resultText;
     console.log(resultText);
     actionByResult(resultText);
-    startRecognizer();
   };
 
   recognizer.onend = function () {
     isListening = false;
+    if (errorFlg) return;
     startRecognizer();
   };
 

@@ -51,12 +51,19 @@ function voiceRecognition() {
     console.log(resultText);
     resultDiv.innerHTML = resultText;
     actionByResult(resultText);
-    startRecognizer();
   }
 
+  recognizer.onend = function () {
+    isListening = false;
+    if (errorFlg) return;
+    startRecognizer();
+  };
+
+  let errorFlg = false;
   const statusDiv = document.getElementById('js-status');
   recognizer.onsoundstart = function () {
     statusDiv.innerHTML = "認識中";
+    errorFlg = false;
   };
   recognizer.onnomatch = function () {
     startRecognizer();
@@ -64,6 +71,8 @@ function voiceRecognition() {
   recognizer.onerror = function (err) {
     statusDiv.innerHTML = "エラー";
     console.error(err);
+    stopRecognizer();
+    errorFlg = true;
   };
   recognizer.onsoundend = function () {
     statusDiv.innerHTML = "停止中";
