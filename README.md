@@ -1,13 +1,13 @@
-# Web-Voice-Recognizer
+# Web Voice Recognizer
 Web voice recognition sample by Web Speech API
 
-## Start(dev)
+## Start (dev)
 
 ```
 npm run start
 ```
 
-## Build(prod)
+## Build (prod)
 
 ```
 npm run build

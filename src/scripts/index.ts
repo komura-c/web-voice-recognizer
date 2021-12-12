@@ -10,21 +10,20 @@ function voiceRecognition() {
   recognizer.continuous = true;
 
   // register event
-  const startBtn = document.getElementById('js-start-btn');
-  const stopBtn = document.getElementById('js-stop-btn');
-  startBtn.addEventListener('click', function () {
-    startRecognizer();
-  });
-  stopBtn.addEventListener('click', function () {
-    stopRecognizer();
-  });
   let isListening: boolean = false;
+  const button = document.getElementById('js-button');
+  button.addEventListener('click', function () {
+    if (isListening) {
+      stopRecognizer();
+    } else {
+      startRecognizer();
+    }
+  });
   function startRecognizer() {
     if (isListening) {
       return;
     }
-    startBtn.innerHTML = '音声認識中...';
-    startBtn.setAttribute('disabled', '');
+    button.classList.add("on");
     recognizer.start();
     isListening = true;
   }
@@ -32,8 +31,7 @@ function voiceRecognition() {
     if (!isListening) {
       return;
     }
-    startBtn.innerHTML = '音声認識スタート';
-    startBtn.removeAttribute('disabled');
+    button.classList.remove("on");
     recognizer.stop();
     isListening = false;
   }
@@ -51,19 +49,12 @@ function voiceRecognition() {
     console.log(resultText);
     resultDiv.innerHTML = resultText;
     actionByResult(resultText);
+    startRecognizer();
   }
 
-  recognizer.onend = function () {
-    isListening = false;
-    if (errorFlg) return;
-    startRecognizer();
-  };
-
-  let errorFlg = false;
   const statusDiv = document.getElementById('js-status');
   recognizer.onsoundstart = function () {
     statusDiv.innerHTML = "認識中";
-    errorFlg = false;
   };
   recognizer.onnomatch = function () {
     startRecognizer();
@@ -72,7 +63,6 @@ function voiceRecognition() {
     statusDiv.innerHTML = "エラー";
     console.error(err);
     stopRecognizer();
-    errorFlg = true;
   };
   recognizer.onsoundend = function () {
     statusDiv.innerHTML = "停止中";
