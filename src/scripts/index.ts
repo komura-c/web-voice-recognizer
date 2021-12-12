@@ -47,24 +47,24 @@ function voiceRecognition() {
     }
     prevResultText = resultText;
     console.log(resultText);
-    resultDiv.innerHTML = resultText;
+    resultDiv.textContent = resultText;
     actionByResult(resultText);
     startRecognizer();
   }
 
   const statusDiv = document.getElementById('js-status');
   recognizer.onsoundstart = function () {
-    statusDiv.innerHTML = "認識中";
+    statusDiv.textContent = "認識中";
   };
   recognizer.onnomatch = function () {
     startRecognizer();
   };
   recognizer.onerror = function (err) {
-    statusDiv.innerHTML = "エラー";
+    statusDiv.textContent = "エラー";
     console.error(err);
     stopRecognizer();
   };
   recognizer.onsoundend = function () {
-    statusDiv.innerHTML = "停止中";
+    statusDiv.textContent = "停止中";
   };
 }
