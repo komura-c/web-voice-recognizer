@@ -29,14 +29,17 @@ function voiceRecognition() {
   recognizer.onnomatch = function () {
     startRecognizer();
   };
-  recognizer.onerror = function () {
+  recognizer.onerror = function (err) {
     console.log("状態: エラー");
-    startRecognizer();
+    console.error(err);
   };
 
+  let prevResultText;
   recognizer.onresult = function (event) {
     const results = event.results;
     const resultText = results[results.length - 1][0].transcript.trim();
+    if (prevResultText === resultText) return;
+    prevResultText = resultText;
     console.log(resultText);
     actionByResult(resultText);
     startRecognizer();
@@ -63,13 +66,13 @@ function actionByResult(resultText) {
 
   function scrollUp() {
     window.scrollBy({
-      top: -window.innerHeight / 2,
+      top: -window.innerHeight,
       behavior: "smooth"
     });
   }
   function scrollDown() {
     window.scrollBy({
-      top: window.innerHeight / 2,
+      top: window.innerHeight,
       behavior: "smooth"
     });
   }
