@@ -6,7 +6,7 @@ chrome.extension.onMessage.addListener(function (request) {
 
 function voiceRecognition() {
   // @ts-ignore
-  const Recognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognizer = new Recognition();
   recognizer.lang = 'ja-JP';
   recognizer.interimResults = true;
